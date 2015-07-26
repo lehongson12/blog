@@ -4,7 +4,7 @@
 </div>
 <% @comments.each do |comment| %>
   <div class="comment">
-    <p class="username"><%= comment.user.name if comment.user %></p>
+    <p class="username"><%= comment.user.name %></p>
     <p class="content"><%= comment.content %></p>
     <p class="text-muted pull-right"><%= time_ago_in_words(@post.created_at) %>  ago.</p>
   </div>

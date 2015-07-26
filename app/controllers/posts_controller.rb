@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def show
     @comments = Comment.where(post_id: @post)
-    @random_post = Post.where.not(id: @post).order("RANDOM()").limit(2).first
+    @random_post = Post.where.not(id: @post).order("RANDOM()").first
   end
 
   def new
@@ -16,8 +16,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-
+    @post = current_user.posts.build post_params
     if @post.save
       redirect_to @post
     else
@@ -29,7 +28,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+    if @post.update post_params
       redirect_to @post
     else
       render 'edit'

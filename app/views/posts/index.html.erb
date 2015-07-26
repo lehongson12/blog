@@ -1,21 +1,4 @@
-<% if user_signed_in? %>
-	<p id="intro">
-		Hello
-		<%= current_user.name %>
-		<br/>
-		<span>
-				Share your inspiration and see what's inspiring others.
-		</span>
-	</p>
-<% else %>
-	<p id = "intro">
-		What Makes Your Beautifful?
-		<br/>
-		<span>
-			Share your inspiration and see what's inspiring others.
-		</span>
-	</p>
-<% end %>
+<% provide :title, "All Posts" %>
 <div id="posts" class="row">
 	<% @posts.each do |post| %>
 		<div class="post col-md-4">
@@ -29,8 +12,8 @@
 				<div class="data clearfix">
 					<p class="username">Shared by <%= post.user.name %></p>
 					<p class="buttons">
-						<span class="glyphicon glyphicon-thumbs-up"></span><%= post.comments.count %>
-						<span class="glyphicon glyphicon-thumbs-up"></span><%= post.get_likes.size %>
+						<span class="glyphicon glyphicon-comment"></span> <%= post.comments.count %>
+						<span class="glyphicon glyphicon-thumbs-up"></span> <%= post.get_likes.size %>
 					</p>
 				</div>
 			</div>
