@@ -1,0 +1,23 @@
+<h3> Random Inspiration </h3>
+<div class="post" %>
+  <div class="post_image" >
+    <%= link_to (image_tag @random_post.image.url(:medium)), post_path(@random_post) %>
+  </div>
+  <div class="post_content">
+    <div class="title" >
+      <h2><%= link_to @random_post.title.first(15), post_path(@random_post) %></h2>
+    </div>
+    <div class="data clearfix" >
+      <p class="username" >
+        Shared by <%= @random_post.user.name %>
+      </p>
+      <p class="buttons" >
+        <span>
+          <i class="fa fa-comments-o"><%= @random_post.comments.count %></i>
+        </span>
+        <span>
+          <i class="fa fa-thumbs-o-up"><%= @random_post.get_likes.size %>
+      </p>
+    </div>
+  </div>          
+</div>
