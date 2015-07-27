@@ -32,6 +32,13 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 100;
 }
+h4.media-heading {
+	letter-spacing: -1px;
+	margin-bottom: 5px;
+	text-align: left;
+	font-weight: normal;
+	color: #777;	
+}
 
 #wrapper {
 	width: 100%;
@@ -64,18 +71,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #post_show {
-	padding-top: 2rem;
+	padding-top: 0.5rem;
 	.post_image_description {
-		width: 65%;
+		width: 70%;
 		float: left;
-		margin-right: 5%;
+		//margin-right: 0%;
 	}
 	
 	
 	#random_post {
 		width: 25%;
-		margin-left: 5%;
-		margin-top: -3.2rem;
+		margin-left: 3.7%;
+		margin-top: -7.2rem;
 		float: left;
 		h3 {
 			font-size: 1rem;
@@ -157,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #comments {
 	padding-bottom: 4rem;
-	width: 65%;
+	width: 70%;
 	.comment_count {
 		border-bottom: 1px solid #E9E9E9;
 		padding-bottom: .5rem;
@@ -210,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
 		border: 1px solid #E4E4E4;
 		border-radius: 0.3rem;
 		.post_image {
-			height: 164px;
+			height: 200px;
 			overflow: hidden;
 			img {
 				width: 100%;
@@ -361,6 +368,7 @@ aside {
 .stats {
   overflow: auto;
   margin-top: 0;
+  margin-bottom: 10px;
   padding: 0;
   a {
     float: left;
@@ -450,4 +458,9 @@ h4 {
   text-align: center;
   font-weight: normal;
   color: $gray-light;
+}
+
+.detail-info {
+	margin-bottom: 10px;
+	list-style: none;
 }

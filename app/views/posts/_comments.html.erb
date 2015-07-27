@@ -3,9 +3,18 @@
   <%= render "comments/form" %>
 </div>
 <% @comments.each do |comment| %>
-  <div class="comment">
-    <p class="username"><%= comment.user.name %></p>
-    <p class="content"><%= comment.content %></p>
-    <p class="text-muted pull-right"><%= time_ago_in_words(@post.created_at) %>  ago.</p>
-  </div>
+  <div class="media">
+	  <a class="pull-left" href="#">
+	  	<% if comment.user.avatar? %>
+	  		<%= image_tag(comment.user.avatar.url(:thumb)) %>
+	  	<% else %>
+	      <%= image_tag("avatar.jpeg", size: "64x64") %>
+	    <% end %>
+	  </a>
+	  <div class="media-body">
+	      <h4 class="media-heading"><%= link_to comment.user.name, comment.user %></h4>
+	      <p class="text-muted"><%= comment.content %></p>
+	      <small class="pull-right text-muted">Shared <%= time_ago_in_words(@post.created_at) %>  ago.</small>
+	  </div>
+	</div>
 <% end %>

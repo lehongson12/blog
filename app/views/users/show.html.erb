@@ -1,30 +1,40 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-3 user-avatar">
     <section class="user_info">
       <h1>
-        <%= image_tag(@user.avatar.url(:thumb)) if @user.avatar %>
-        <%= @user.name %>
+        <%= image_tag(@user.avatar.url, size: "250x250", class: "img-thumbnail") if @user.avatar %>
       </h1>
+      <div align="center">
+        <%= render 'follow_form' if user_signed_in? %>
+      </div>
     </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-    <%= render 'follow_form' if user_signed_in? %>
-    <section>
+  </aside>
+  <div class="col-md-6">
+    <h2><%= @user.name %></h2>
       <p class="text-muted">
         <%= @user.bio if @user.bio %>
       </p>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <div id="posts" class="row">
-      <% if @user.posts.any? %>
-        <h3>Posts (<%= @user.posts.count %>)</h3>
-        <ol class="microposts">
-          <%= render @user.posts %>
-        </ol>
-      <% end %>
-    </div>
   </div>
+  <div class="col-md-3">
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+    <section>
+      <li class="text-muted detail-info"><span class="glyphicon glyphicon-envelope"></span> abc@abc.com </li>
+      <li class="text-muted detail-info"><span class="glyphicon glyphicon-thumbs-up"></span> 123 </li>
+      <li class="text-muted detail-info"><span class="glyphicon glyphicon-link"></span> aabc.com </li>
+      <li class="text-muted detail-info"><span class="glyphicon glyphicon-phone-alt"></span> 09999999999 </li>
+      <li class="text-muted detail-info"><span class="glyphicon glyphicon-time"></span> as12-12-12 </li>
+      <li class="text-muted detail-info"><span class="glyphicon glyphicon-comment"></span> asdaskdjhadsh </li>
+    </section>
+  </div>
+</div>
+<div id="posts" class="row">
+  <% if @user.posts.any? %>
+    <h3>Posts (<%= @user.posts.count %>)</h3>
+    <ol class="microposts">
+      <%= render @user.posts %>
+    </ol>
+  <% end %>
 </div>

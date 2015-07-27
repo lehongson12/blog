@@ -2,12 +2,11 @@
 <div id="post_show">
 	<h1><%= @post.title %></h1>
 	<p class="username">
-		Post by <%= @post.user.name %> | <%= time_ago_in_words(@post.created_at) %>  ago.
+		Post by <%= link_to @post.user.name, @post.user %> | <%= time_ago_in_words(@post.created_at) %>  ago.
 	</p>
-  <div class="clearfix"></div>
   <div class="row">
     <div class="post_image_description col-md-10">
-      <%= image_tag @post.image.url(:medium) %>
+      <%= image_tag @post.image.url(:medium), class: "img-responsive" %>
       <div class="description"><%= simple_format(@post.description) %></div>
       <div class="post_data">
         <%= link_to "Visit Link", @post.link, class: "btn btn-primary" %>
@@ -35,7 +34,21 @@
       </div>
     </div>
     <div id="random_post" class="col-md-2">
-      <%= render "random_post" %>
+    <h3></h3>
+      <div class="well">
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                </button>
+                </span>
+            </div>
+            <!-- /.input-group -->
+        </div>
+        <div class="well">
+          <%= render "random_post" %>
+        </div>
     </div>
   </div>
 </div>
