@@ -8,7 +8,7 @@
 	  	<% if comment.user.avatar? %>
 	  		<%= image_tag(comment.user.avatar.url(:thumb)) %>
 	  	<% else %>
-	      <%= image_tag("avatar.jpeg", size: "64x64") %>
+	      <%= image_tag("avatar-default.png", size: "64x64") %>
 	    <% end %>
 	  </a>
 	  <div class="media-body">

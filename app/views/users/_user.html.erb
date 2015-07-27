@@ -1,8 +1,8 @@
 <li>
   <% if user.avatar? %>
-    <%= image_tag(user.avatar.url(:thumb)) %>
+    <%= image_tag(user.avatar.url(:thumb), size: "64x64") %>
   <% else %>
-    <%= image_tag("avatar.jpg", size: "100x50") %>
+    <%= image_tag("avatar-default.png", size: "64x64") %>
   <% end %>
   <%= link_to user.name, user %>
   <% if current_user.try(:admin?) && current_user = !@user %>

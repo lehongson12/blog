@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	#before_filter :admin_only, :except => :show
+
 	def index
     @users = User.all
     @users = User.all.paginate(page: params[:page], per_page: 10)
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
 	private
  	def admin_only
-    unless current_user.try(:super_mod?) || admin_signed_in?
+    unless current_user.try(:admin?)
       redirect_to :back, :alert => "Access denied."
     end
   end

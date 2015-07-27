@@ -26,7 +26,7 @@
           <% end %>
         </div>
         <p class="data" >
-        <% if @post.user == current_user %>
+        <% if @post.user == current_user || current_user.admin %>
           <%= link_to "Edit", edit_post_path(@post), class: "data" %>
           <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "data" %>
         <% end %>
@@ -34,18 +34,6 @@
       </div>
     </div>
     <div id="random_post" class="col-md-2">
-    <h3></h3>
-      <div class="well">
-            <div class="input-group">
-                <input type="text" class="form-control">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                </button>
-                </span>
-            </div>
-            <!-- /.input-group -->
-        </div>
         <div class="well">
           <%= render "random_post" %>
         </div>

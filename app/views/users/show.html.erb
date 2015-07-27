@@ -3,7 +3,11 @@
   <aside class="col-md-3 user-avatar">
     <section class="user_info">
       <h1>
-        <%= image_tag(@user.avatar.url, size: "250x250", class: "img-thumbnail") if @user.avatar %>
+        <% if @user.avatar? %>
+          <%= image_tag(@user.avatar.url(:medium), size: "250x250", class: "img-rounded") %>
+        <% else %>
+          <%= image_tag("avatar-default.png", size: "250x250", class: "img-thumbnail img-responsive") %>
+        <% end %>
       </h1>
       <div align="center">
         <%= render 'follow_form' if user_signed_in? %>

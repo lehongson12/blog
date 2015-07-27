@@ -82,7 +82,7 @@ h4.media-heading {
 	#random_post {
 		width: 25%;
 		margin-left: 3.7%;
-		margin-top: -7.2rem;
+		//margin-top: -3.2rem;
 		float: left;
 		h3 {
 			font-size: 1rem;
@@ -463,4 +463,12 @@ h4 {
 .detail-info {
 	margin-bottom: 10px;
 	list-style: none;
+}
+
+.img-rounded {
+	padding: 4px;
+	line-height: 1.42857;
+	background-color: #FFF;
+	border: 1px solid #DDD;
+	border-radius: 4px;
 }

@@ -18,8 +18,10 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "64x64>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :large => "900x300>", :thumb => "64x64>", medium: "250x250" }, :default_url => "/images/:style/missing.png"
+  
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  #validates :phone, inclusion: { in: 0..9 } #format: { with: /\d{3}-\d{3}-\d{4}/ || /\d{4}-\d{3}-\d{4}/, message: "Invalid phonenumber" }
 
   def set_default_role
 	  self.role ||= :user
