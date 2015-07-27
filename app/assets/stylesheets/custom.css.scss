@@ -29,11 +29,15 @@ body {
 	font-weight: 100;
 }
 
+a {
+	text-decoration: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 100;
 }
 h4.media-heading {
-	letter-spacing: -1px;
+	letter-spacing: 0px;
 	margin-bottom: 5px;
 	text-align: left;
 	font-weight: normal;
@@ -76,6 +80,7 @@ h4.media-heading {
 		width: 70%;
 		float: left;
 		//margin-right: 0%;
+		font-family: "Montserrat",sans-serif;
 	}
 	
 	
@@ -471,4 +476,30 @@ h4 {
 	background-color: #FFF;
 	border: 1px solid #DDD;
 	border-radius: 4px;
+}
+
+/** ABOUT **/
+
+.about, .contactt{
+	margin-bottom: 50px;
+}
+.admin-info {
+	line-height: 36px;
+	margin-bottom: 25px;
+	margin: 0px 0px 10px;
+	font-family: "Montserrat",sans-serif;
+}
+
+.contactt {
+	margin: 0% 20%;
+	fieldset {
+	 margin-top: 30px;
+	 margin-bottom: 30px;
+	}
+}
+.contact-form {
+	margin-bottom: 40px;
+}
+textarea.form-control {
+    height: 200px;
 }

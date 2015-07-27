@@ -26,7 +26,7 @@
           <% end %>
         </div>
         <p class="data" >
-        <% if @post.user == current_user || current_user.admin %>
+        <% if @post.user == current_user || current_user.admin? %>
           <%= link_to "Edit", edit_post_path(@post), class: "data" %>
           <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "data" %>
         <% end %>

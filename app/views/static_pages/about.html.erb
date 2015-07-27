@@ -1,0 +1,14 @@
+<div class="about" align="center">
+	<% @admin = User.find_by_role 2 %>
+	<div class="avatar">
+		<%= image_tag(@admin.avatar.url(:medium), class: "img-circle", size: "230x230") %>
+	</div>
+	<div class="content">
+		<h1><strong>Hello, I am <%= @admin.name %></strong></h1>
+		<h4 class="admin-info">Hello everybody. I’m SonLe, a free handsome bootstrap theme coded by Framgia.inc. A really simple theme for those wanting to showcase their work with a cute & clean style.</h4>
+		<h4 class="admin-info">Please, consider to register to our 
+			<%= link_to "newsletter", contact_path %>
+		 to be updated with our latest themes and freebies. Like always, you can use this theme in any project freely. Share it with your friends.</h4>
+	</div>
+</div>
+	
