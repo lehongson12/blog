@@ -3,7 +3,7 @@
   <aside class="col-md-4">
     <section class="user_info">
       <% if @user.avatar? %>
-        <%= image_tag(@user.avatar.url(:medium), class: "img-rounded") %>
+        <%= image_tag(@user.avatar.url(:medium), size: "250x250", class: "img-rounded") %>
       <% else %>
         <%= image_tag "avatar-default.png", size: "250x250" %>
       <% end %>

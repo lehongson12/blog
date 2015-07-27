@@ -4,5 +4,5 @@
     <%= f.text_area :content, placeholder: "add your comment here...", class: "form-control" %>
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id if user_signed_in? %>
-  <%= f.submit :Submit, class: "button btn btn-default" %>
+  <%= f.submit "Add your comments", class: "button btn btn-default" %>
 <% end %>
