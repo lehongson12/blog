@@ -1,0 +1,15 @@
+<li>
+  <% if user.avatar? %>
+    <%= image_tag(user.avatar.url(:thumb)) %>
+  <% else %>
+    <%= image_tag("avatar.jpg", size: "100x50") %>
+  <% end %>
+  <%= link_to user.name, user %>
+  <% if current_user.try(:admin?) && current_user = !@user %>
+  	<%= link_to "delete", user, method: :delete, 
+  							data: { confirm: "Are Your Sure?" }, class: "btn btn-danger" %>
+  <% end %>
+  <p class="text-muted">
+  	<%= user.bio.first(140) if user.bio %>
+  </p>
+</li>
