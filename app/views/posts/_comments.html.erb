@@ -6,7 +6,7 @@
   <div class="media">
 	  <a class="pull-left" href="#">
 	  	<% if comment.user.avatar? %>
-	  		<%= image_tag(comment.user.avatar.url(:thumb)) %>
+	  		<%= image_tag(comment.user.avatar.url(:thumb), size: "64x64") %>
 	  	<% else %>
 	      <%= image_tag("avatar-default.png", size: "64x64") %>
 	    <% end %>

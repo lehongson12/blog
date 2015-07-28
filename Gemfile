@@ -21,6 +21,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'mini_magick'
 gem 'fog'
+gem 'sunspot_rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -29,6 +30,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+group :development, :production do
+    gem 'sunspot_solr'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -51,7 +55,7 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
+gem 'rails_12factor', group: :production
 group :production do
   gem 'rails_12factor'
   gem 'pg'
