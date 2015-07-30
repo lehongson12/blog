@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   enum role: [:user, :mod, :admin]
 
 	after_initialize :set_default_role, :if => :new_record?
+  before_validation :generate_slug
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -23,9 +25,16 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   #validates :phone, inclusion: { in: 0..9 } #format: { with: /\d{3}-\d{3}-\d{4}/ || /\d{4}-\d{3}-\d{4}/, message: "Invalid phonenumber" }
 
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :finders]
+
   def set_default_role
 	  self.role ||= :user
 	end
+
+  def should_generate_new_friendly_id?
+   new_record? || slug.nil? || slug.blank? # you can add more condition here
+  end
 
 	def feed
     #microposts
@@ -48,5 +57,10 @@ class User < ActiveRecord::Base
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  private
+  def generate_slug
+    self.name_slug = name.to_s.parameterize
   end
 end

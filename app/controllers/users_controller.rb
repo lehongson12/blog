@@ -1,19 +1,19 @@
 class UsersController < ApplicationController
 
 	def index
-    @users = User.all
+    #@users = User.all
     @users = User.all.paginate(page: params[:page], per_page: 10)
   end
 
 	def show
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     #unless @user == current_user
     #  redirect_to :back, :alert => "Access denied."
     #end
 	end
 
 	def update
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     if @user.update_attributes(secure_params)
       redirect_to users_path, :notice => "User updated."
     else

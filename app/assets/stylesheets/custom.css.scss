@@ -49,6 +49,9 @@ h4.media-heading {
 	margin: 0 auto;
 }
 
+body.mce-content-body {
+    font-size: 14px;
+}
 .navbar-inverse {
 	background-color: #1A202B;
 	border-bottom-color: #CCC4C4;
@@ -486,7 +489,7 @@ h4 {
 .about, .contactt{
 	margin-bottom: 50px;
 }
-.admin-info {
+.admin-info, .bio {
 	line-height: 36px;
 	margin-bottom: 25px;
 	margin: 0px 0px 10px;

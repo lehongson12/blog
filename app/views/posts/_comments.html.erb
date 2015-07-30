@@ -13,7 +13,7 @@
 	  </a>
 	  <div class="media-body">
 	      <h4 class="media-heading"><%= link_to comment.user.name, comment.user %></h4>
-	      <p class="text-muted"><%= comment.content %></p>
+	      <p class="text-muted"><%=raw comment.content %></p>
 	      <small class="pull-right text-muted">Shared <%= time_ago_in_words(@post.created_at) %>  ago.</small>
 	  </div>
 	</div>
