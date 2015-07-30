@@ -78,5 +78,5 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  #config.app_domain = "inspirationtour.herokuapp.com/"
+  config.app_domain = "https://inspirationtour.herokuapp.com/"
 end

@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   enum role: [:user, :mod, :admin]
 
 	after_initialize :set_default_role, :if => :new_record?
-  before_validation :generate_slug
 
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
@@ -95,8 +94,4 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
-  private
-  def generate_slug
-    self.name_slug = name.to_s.parameterize
-  end
 end

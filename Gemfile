@@ -63,7 +63,7 @@ group :development, :test do
 end
 gem 'rails_12factor', group: :production
 group :production do
-  gem 'rails_12factor'
+  #gem 'rails_12factor'
   gem 'pg'
 end
 

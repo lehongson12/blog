@@ -29,6 +29,7 @@ class UsersController < ApplicationController
 	end
 
 	def finish_signup
+    @user = User.friendly.find params[:id]
     if request.patch? && params[:user]
       if @user.update(secure_params)
         sign_in(@user, bypass: true)
@@ -63,6 +64,6 @@ class UsersController < ApplicationController
   def secure_params
     accessibles = [ :name, :email ]
     accessibles << [ :password, :password_confirmation ] unless params[:user][:password].blank?
-    params.require(:user).permit(accessibles, :role)
+    params.require(:user).permit(accessibles)
   end
 end
