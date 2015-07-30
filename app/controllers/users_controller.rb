@@ -14,10 +14,11 @@ class UsersController < ApplicationController
 
 	def update
     @user = User.friendly.find(params[:id])
-    if @user.update_attributes(secure_params)
-      redirect_to users_path, :notice => "User updated."
+    if @user.update(secure_params)
+      sign_in(@user == current_user ? @user : current_user, bypass: true)
+      redirect_to @user, notice: "Your profile was successfully updated."
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      render "edit"
     end
 	end
 
@@ -26,6 +27,17 @@ class UsersController < ApplicationController
 	  @user.destroy
 	  redirect_to users_path, :notice => "User deleted."
 	end
+
+	def finish_signup
+    if request.patch? && params[:user]
+      if @user.update(secure_params)
+        sign_in(@user, bypass: true)
+        redirect_to @user, notice: "Your profile was successfully updated."
+      else
+        @show_errors = true
+      end
+    end
+  end
 
 	def following
 	  @user = User.find(params[:id])
@@ -49,6 +61,8 @@ class UsersController < ApplicationController
   end
 
   def secure_params
-    params.require(:user).permit(:role)
+    accessibles = [ :name, :email ]
+    accessibles << [ :password, :password_confirmation ] unless params[:user][:password].blank?
+    params.require(:user).permit(accessibles, :role)
   end
 end

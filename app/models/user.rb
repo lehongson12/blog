@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   before_validation :generate_slug
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   has_many :posts
 
   has_many :active_relationships, class_name:  "Relationship",
@@ -24,6 +24,42 @@ class User < ActiveRecord::Base
   
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   #validates :phone, inclusion: { in: 0..9 } #format: { with: /\d{3}-\d{3}-\d{4}/ || /\d{4}-\d{3}-\d{4}/, message: "Invalid phonenumber" }
+
+  TEMP_EMAIL_PREFIX = "change@me"
+  TEMP_EMAIL_REGEX = /\Achange@me/
+
+  validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
+
+  def self.find_for_oauth(auth, signed_in_resource = nil)
+    identity = Identity.find_for_oauth(auth)
+
+    user = signed_in_resource ? signed_in_resource : identity.user
+
+    if user.nil?
+      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
+      email = auth.info.email if email_is_verified
+      user = User.where(email: email).first if email
+
+      if user.nil?
+        user = User.new(
+          name: auth.extra.raw_info.name,
+          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          password: "password"
+        )
+        user.save!
+      end
+    end
+
+    if identity.user != user
+      identity.user = user
+      identity.save!
+    end
+    user
+  end
+
+  def email_verified?
+    self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
 
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
