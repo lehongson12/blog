@@ -1,4 +1,6 @@
-class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  # You should configure your model like this:
+  # devise :omniauthable, omniauth_providers: [:twitter]
   def self.provides_callback_for(provider)
     class_eval %Q{
       def #{provider}
@@ -6,11 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
         if @user.persisted?
           sign_in @user, event: :authentication
-          if @user.email_verified?
-            #redirect_to edit_user_registration_path
-          #else
-           redirect_to finish_signup_path(@user)
-          end
+          redirect_to root_path
           set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
         else
           session["devise.#{provider}_data"] = env["omniauth.auth"]
@@ -31,4 +29,27 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #finish_signup_path(resource)
     end
   end
+  # You should also create an action method in this controller like this:
+  # def twitter
+  # end
+
+  # More info at:
+  # https://github.com/plataformatec/devise#omniauth
+
+  # GET|POST /resource/auth/twitter
+  # def passthru
+  #   super
+  # end
+
+  # GET|POST /users/auth/twitter/callback
+  # def failure
+  #   super
+  # end
+
+  # protected
+
+  # The path used when OmniAuth fails
+  # def after_omniauth_failure_path_for(scope)
+  #   super(scope)
+  # end
 end

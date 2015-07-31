@@ -1,5 +1,5 @@
 <div id="add-email" class="container">
-  <h1>Add Email</h1>
+  <h1>Change passwors</h1>
   <%= form_for(current_user, as: "user", url: finish_signup_path(current_user),
     html: { role: "form"}) do |f| %>
     <% if @show_errors && current_user.errors.any? %>
@@ -10,10 +10,10 @@
       </div>
     <% end %>
     <div class="form-group">
-      <%= f.label :email %>
+      <%= f.label :password %>
       <div class="controls">
-        <%= f.text_field :email, autofocus: true, class: "form-control input-lg", placeholder: "Example: email@me.com" %>
-        <p class="help-block">Please confirm your email address. No spam.</p>
+        <%= f.text_field :password, autofocus: true, class: "form-control input-lg", placeholder: "passsword" %>
+        <p class="help-block">Please change your password. No spam.</p>
       </div>
     </div>
     <div class="actions">

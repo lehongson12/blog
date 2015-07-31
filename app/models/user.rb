@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 	after_initialize :set_default_role, :if => :new_record?
 
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+    :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :twitter]
   has_many :posts
 
   has_many :active_relationships, class_name:  "Relationship",
@@ -38,11 +38,14 @@ class User < ActiveRecord::Base
       email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
       email = auth.info.email if email_is_verified
       user = User.where(email: email).first if email
+      #password = auth.info.valid_password(password)
+      #avatar_url = auth.info.image
 
       if user.nil?
         user = User.new(
           name: auth.extra.raw_info.name,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          #avatar_url: auth.infor.image,
           password: "password"
         )
         user.save!
